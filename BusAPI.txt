@@ -1,0 +1,9 @@
+获取BUG当前位置
+(handlerName,lineName,fromStation)
+http://www.zhbuswx.com/Handlers/BusQuery.ashx?handlerName=GetBusListOnRoad&lineName=K3&fromStation=拱北口岸总站
+获取BUS线路
+(handlerName,lineId)
+http://www.zhbuswx.com/Handlers/BusQuery.ashx?handlerName=GetStationList&lineId=5c0c15bb-b7f4-44f2-9e6f-1f4128109c98&
+搜索BUS,获取线路BUS基本信息
+(handlerName,key)
+http://www.zhbuswx.com/Handlers/BusQuery.ashx?handlerName=GetLineListByLineName&key=603
