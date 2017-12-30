@@ -17,6 +17,11 @@ headers = {
     "User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36",
 }
 url = "http://www.zhbuswx.com/Handlers/BusQuery.ashx"
+'''
+    :url 网页地址
+    :parameter 参数
+    :return 返回json数据
+'''
 def getResponse(url,parameters):
     response = get(url=url,params=parameters,headers =headers).text
     jsonData= loads(response)
@@ -26,10 +31,21 @@ def getResponse(url,parameters):
         raise BusExecption("网页响应结果有误")
     return jsonData["data"]
 
+'''
+    :filepath 文件路径
+    :return 返回json数据
+'''
 def getJsonData(filepath):
-    with open(filepath, "r+", encoding="utf-8") as file:
+    with open(filepath, "r+") as file:
         return load(file)
 
+
+'''
+    fromUser 发送者
+    toUser 接受者
+    message 发送内容
+    title 邮件标题
+'''
 def sendEmail(fromUser,toUser,message,title="公交提醒"):
     Msg = MIMEText(message)
     Msg["From"] = Header(fromUser,"utf-8")
@@ -49,6 +65,11 @@ def sendEmail(fromUser,toUser,message,title="公交提醒"):
         if  not smtObj == None:
             smtObj.close()
     return respone
+
+
+
+
+
 
 
 

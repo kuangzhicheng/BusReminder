@@ -35,6 +35,12 @@ class Bus(object):
     def writeBusStationToFile(self):
         parameters = {"handlerName": "GetStationList", "lineId": self.id}
         respone = getResponse(url=url,parameters=parameters)
+        data = []
+        if respone != None and  respone !="":
+            for index in respone:
+                data.append(index["Name"])
+        else:
+            return -1
         path = ".\\data\\"
         if not exists(path):
             try:
@@ -43,4 +49,8 @@ class Bus(object):
                 print("创建文件夹失败:%s"%e)
                 return -1
         with open(path+"%s"%self.name+".txt",'w') as file:
-            dump(respone,file,ensure_ascii=False,indent=5)
+            try:
+                dump(data,file,ensure_ascii=False,indent=5)
+                return 1
+            except Exception as e:
+                print("写入文件失败:%s"%e)
